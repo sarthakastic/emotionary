@@ -1,5 +1,8 @@
+import EntryCard from "@/components/EntryCard";
+import { analyze } from "@/utils/ai";
 import { getUserByClerkID } from "@/utils/auth";
 import { prisma } from "@/utils/db";
+import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
 
 export const PATCH = async (request: Request, { params }) => {
@@ -16,6 +19,16 @@ export const PATCH = async (request: Request, { params }) => {
       content,
     },
   });
+
+  const analysis = await analyze(updatedEntry.content);
+  await prisma.analysis.upsert({
+    where: {
+      entryId: updatedEntry.id,
+    },
+    create: { entryId: updatedEntry.id, ...analysis },
+    update: analysis,
+  });
+
   return NextResponse.json({
     data: updatedEntry,
   });
