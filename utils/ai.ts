@@ -24,11 +24,11 @@ const parser = StructuredOutputParser.fromZodSchema(
       .describe(
         "a hexidecimal color code that represents the mood of the entry. Example #0101fe for blue representing happiness."
       ),
-    // sentimentScore: z
-    //   .number()
-    //   .describe(
-    //     "sentiment of the text and rated on a scale from -10 to 10, where -10 is extremely negative, 0 is neutral, and 10 is extremely positive."
-    //   ),
+    sentimentScore: z
+      .number()
+      .describe(
+        "sentiment of the text and rated on a scale from -10 to 10, where -10 is extremely negative, 0 is neutral, and 10 is extremely positive."
+      ),
   })
 );
 
@@ -46,8 +46,6 @@ const getPrompt = async (content) => {
     entry: content,
   });
 
-  console.log(input, "input");
-
   return input;
 };
 
@@ -58,9 +56,7 @@ export const analyze = async (content) => {
 
   try {
     return parser.parse(result);
-  } catch (e) {
-    console.log(e);
-  }
+  } catch (e) {}
 };
 
 export const qa = async (question, entries) => {
