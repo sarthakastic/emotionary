@@ -1,11 +1,11 @@
-import { PATCH } from "@/app/api/journal/[id]/route";
+import { DELETE, PATCH } from "@/app/api/journal/[id]/route";
 import { POST } from "@/app/api/journal/route";
 
-const createURL = (path) => {
+const createURL = (path: string) => {
   return window.location.origin + path;
 };
 
-export const updateEntry = async (id, content) => {
+export const updateEntry = async (id: string, content: string) => {
   const res = await fetch(
     new Request(createURL(`/api/journal/${id}`), {
       method: "PATCH",
@@ -31,7 +31,7 @@ export const createNewEntry = async () => {
   }
 };
 
-export const askQuestion = async (question) => {
+export const askQuestion = async (question: string) => {
   const res = await fetch(
     new Request(createURL("/api/question"), {
       method: "POST",
@@ -42,5 +42,20 @@ export const askQuestion = async (question) => {
   if (res.ok) {
     const data = await res.json();
     return data.data;
+  }
+};
+
+export const deleteJournal = async (body: any) => {
+  console.log(body, "body");
+  const res = await fetch(
+    new Request(createURL(`/api/journal/${body.id}`), {
+      method: "DELETE",
+      body: JSON.stringify(body),
+    })
+  );
+  console.log(res, "res");
+  if (res.ok) {
+    const data = await res.json();
+    return data.status;
   }
 };

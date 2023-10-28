@@ -15,8 +15,11 @@ const getEntries = async () => {
     orderBy: {
       createdAt: "desc",
     },
+    select: {
+      analysis: true,
+    },
   });
-
+  console.log(entries, "entrues");
   return entries;
 };
 
@@ -32,9 +35,9 @@ const JournalPage = async () => {
       <div className="grid grid-cols-3 gap-4 ">
         <NewEntryCard />
         {(await entries).map((entry) => (
-          <Link key={entry.id} href={`/journal/${entry.id}`}>
-            <EntryCard entry={entry} />
-          </Link>
+          // <Link key={entry.id} href={`/journal/${entry.id}`}>
+          <EntryCard key={entry.id} entry={entry} />
+          // </Link>
         ))}
       </div>
     </div>

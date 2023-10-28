@@ -2,18 +2,18 @@
 
 import { askQuestion } from "@/utils/api";
 import { load } from "langchain/load";
-import { useState } from "react";
+import { SetStateAction, useState } from "react";
 
 const Question = () => {
   const [value, setValue] = useState("");
   const [loading, setLoading] = useState(false);
   const [response, setResponse] = useState();
 
-  const onChange = (e) => {
+  const onChange = (e: { target: { value: SetStateAction<string> } }) => {
     setValue(e.target.value);
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
     setLoading(true);
     const answer = await askQuestion(value);
