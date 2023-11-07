@@ -26,10 +26,10 @@ const CustomTooltip = ({
       <div className="p-8 custom-tooltip bg-white/5 shadow-md border border-black/10 rounded-lg backdrop-blur-md relative">
         <div
           className="absolute left-2 top-2 w-2 h-2 rounded-full"
-          style={{ background: analysis.color }}
+          style={{ background: analysis?.color }}
         ></div>
         <p className="label text-sm text-black/30">{dateLabel}</p>
-        <p className="intro text-xl uppercase">{analysis.mood}</p>
+        <p className="intro text-xl uppercase">{analysis?.mood}</p>
       </div>
     );
   }

@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
 const EntryCard = ({ entry }: { entry: any }) => {
-  const date = new Date(entry.analysis.createdAt).toDateString();
+  const date = new Date(entry?.analysis?.createdAt).toDateString();
 
   const router = useRouter();
 
@@ -30,8 +30,8 @@ const EntryCard = ({ entry }: { entry: any }) => {
   const deleteJournl = async (entry: any) => {
     console.log(entry, "called");
     const deleteStatus = await deleteJournal({
-      id: entry.analysis.entryId,
-      userId: entry.analysis.userId,
+      id: entry.analysis?.entryId,
+      userId: entry.analysis?.userId,
     });
 
     deleteStatus === 200 && router.refresh();
@@ -40,8 +40,8 @@ const EntryCard = ({ entry }: { entry: any }) => {
   return (
     <div className="divide-y divide-gray-200 overflow-hidden rounded-lg bg-white shadow">
       <div className="px-4 py-5 sm:px-6">{date}</div>
-      <div className="px-4 py-5 sm:p-6">{entry.analysis.summary}</div>
-      <div className="px-4 py-4 sm:px-6">{entry.analysis.mood}</div>
+      <div className="px-4 py-5 sm:p-6">{entry.analysis?.summary}</div>
+      <div className="px-4 py-4 sm:px-6">{entry.analysis?.mood}</div>
 
       <div className="flex">
         <Link key={entry.id} href={`/journal/${entry.id}`}>
