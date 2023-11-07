@@ -3,10 +3,13 @@ import { deleteJournal } from "@/utils/api";
 import { getUserByClerkID } from "@/utils/auth";
 import { prisma } from "@/utils/db";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
 const EntryCard = ({ entry }: { entry: any }) => {
   const date = new Date(entry.analysis.createdAt).toDateString();
+
+  const router = useRouter();
 
   const getEntries = async () => {
     const user = await getUserByClerkID();
@@ -31,7 +34,7 @@ const EntryCard = ({ entry }: { entry: any }) => {
       userId: entry.analysis.userId,
     });
 
-    deleteStatus === 200 && getEntries();
+    deleteStatus === 200 && router.refresh();
   };
 
   return (
