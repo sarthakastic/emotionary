@@ -1,7 +1,7 @@
 import { UserButton } from "@clerk/nextjs";
 import Link from "next/link";
 
-const DashboardLayout = ({ children }) => {
+const DashboardLayout = ({ children }: { children: any }) => {
   const links = [
     { name: "Journals", href: "/journal" },
     { name: "History", href: "/history" },

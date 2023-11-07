@@ -34,9 +34,9 @@ const JournalPage = async () => {
       </div>
       <div className="grid grid-cols-3 gap-4 ">
         <NewEntryCard />
-        {(await entries).map((entry) => (
+        {(await entries).map((entry, id) => (
           // <Link key={entry.id} href={`/journal/${entry.id}`}>
-          <EntryCard key={entry.id} entry={entry} />
+          <EntryCard key={id} entry={entry} />
           // </Link>
         ))}
       </div>
