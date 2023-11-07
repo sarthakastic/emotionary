@@ -5,9 +5,9 @@ import { useState } from "react";
 import { useAutosave } from "react-autosave";
 
 const Editor = ({ entry }: { entry: any }) => {
-  const [value, setValue] = useState(entry.content);
+  const [value, setValue] = useState(entry?.content);
   const [isLoading, setIsLoading] = useState(false);
-  const [analysis, setAnalysis] = useState(entry.analysis);
+  const [analysis, setAnalysis] = useState(entry?.analysis);
 
   const { mood, summary, color, subject, negative } = analysis;
   const analysisData = [

@@ -39,12 +39,13 @@ const EntryCard = ({ entry }: { entry: any }) => {
 
   return (
     <div className="divide-y divide-gray-200 overflow-hidden rounded-lg bg-white shadow">
+      {}
       <div className="px-4 py-5 sm:px-6">{date}</div>
       <div className="px-4 py-5 sm:p-6">{entry.analysis?.summary}</div>
       <div className="px-4 py-4 sm:px-6">{entry.analysis?.mood}</div>
 
       <div className="flex">
-        <Link key={entry.id} href={`/journal/${entry.id}`}>
+        <Link key={entry.id} href={`/journal/${entry.analysis?.entryId}`}>
           <div className="px-4 py-4 sm:px-6">Edit or View </div>
         </Link>
         <button
