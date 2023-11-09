@@ -1,15 +1,19 @@
 "use client";
 import { deleteJournal } from "@/utils/api";
 import { getUserByClerkID } from "@/utils/auth";
+import { useLoadContext } from "@/utils/context";
 import { prisma } from "@/utils/db";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import { openai } from "@/utils/openai";
 
 const EntryCard = ({ entry }: { entry: any }) => {
   const date = new Date(entry?.analysis?.createdAt).toDateString();
 
   const router = useRouter();
+
+  const { loading, setLoading } = useLoadContext();
 
   const getEntries = async () => {
     const user = await getUserByClerkID();
@@ -27,14 +31,20 @@ const EntryCard = ({ entry }: { entry: any }) => {
   };
   // console.log(entry, "entry");
 
+  const onDeleteSuccess = () => {
+    setLoading(false);
+    router.refresh();
+  };
+
   const deleteJournl = async (entry: any) => {
     console.log(entry, "called");
+    setLoading(true);
     const deleteStatus = await deleteJournal({
       id: entry.analysis?.entryId,
       userId: entry.analysis?.userId,
     });
-
-    deleteStatus === 200 && router.refresh();
+    console.log(deleteStatus, "deleteStatus");
+    deleteStatus?.status === 200 && onDeleteSuccess();
   };
 
   return (

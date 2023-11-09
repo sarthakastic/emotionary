@@ -1,14 +1,19 @@
 "use client";
 
 import { createNewEntry } from "@/utils/api";
+import { useLoadContext } from "@/utils/context";
 import { useRouter } from "next/navigation";
 
 const NewEntryCard = () => {
   const router = useRouter();
 
+  const { loading, setLoading } = useLoadContext();
+
   const handleOnClick = async () => {
+    setLoading(true);
     const data = await createNewEntry();
     router.push(`/journal/${data.id}`);
+    setLoading(false);
   };
 
   return (

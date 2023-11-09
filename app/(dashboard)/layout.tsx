@@ -1,3 +1,4 @@
+import Loading from "@/components/Loading";
 import { UserButton } from "@clerk/nextjs";
 import Link from "next/link";
 
@@ -9,6 +10,7 @@ const DashboardLayout = ({ children }: { children: any }) => {
 
   return (
     <div className="h-screen w-screen relative ">
+      <Loading />
       <aside className="absolute w-[200px] top-0 left-0 h-full border-r border-black/10  ">
         <div className="px-4 my-4">
           <span className="text-3xl">MOOD</span>

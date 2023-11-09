@@ -36,13 +36,20 @@ const Question = () => {
         <button
           disabled={loading}
           type="submit"
-          className="bg-blue-400 px-4 py-2 rounded-lg text-lg "
+          className="bg-blue-400 mx-2 px-4 py-2 rounded-lg text-lg hover:font-bold hover:underline  "
         >
           Ask
         </button>
       </form>
       {loading && <div>...loading</div>}
-      {response && <div>{response}</div>}
+
+      {response ? (
+        <div>{response}</div>
+      ) : (
+        <div className="text-gray-800/25 font-bold p-2 ">
+          ex : How was my day yesterday?
+        </div>
+      )}
     </div>
   );
 };

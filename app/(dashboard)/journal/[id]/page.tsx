@@ -1,4 +1,5 @@
 import Editor from "@/components/Editor";
+import AiImage from "@/components/Image";
 import { getUserByClerkID } from "@/utils/auth";
 import { prisma } from "@/utils/db";
 
@@ -21,9 +22,10 @@ const getEntry = async (id: string) => {
 
 const EntryPage = async ({ params }: { params: any }) => {
   const entry = await getEntry(params.id);
-
+  console.log(entry, "entry props");
   return (
     <div className="h-full w-full ">
+      <AiImage mood={entry?.analysis?.summary} />
       <Editor entry={entry} />
     </div>
   );
