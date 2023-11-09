@@ -11,6 +11,39 @@ import { openai } from "@/utils/openai";
 const EntryCard = ({ entry }: { entry: any }) => {
   const date = new Date(entry?.analysis?.createdAt).toDateString();
 
+  const colors = [
+    "#ffda9e",
+    "#84b6f4",
+    "#ff94a2",
+    "#c5c6c8",
+    "#eaffc2",
+    "#e79eff",
+    "#ffe4e1",
+  ];
+
+  const animation = [
+    "animate-fade-in-down",
+    "animate-fade-in-left",
+    "animate-fade-in-up",
+    "animate-fade-in-right",
+  ];
+
+  function pickRandomColor(): number {
+    // Generate a random number between 0 (inclusive) and 5 (exclusive)
+    const randomNumber = Math.floor(Math.random() * 7);
+    return randomNumber;
+  }
+
+  const randomColor = pickRandomColor();
+
+  function pickRandomAnimation(): number {
+    // Generate a random number between 0 (inclusive) and 5 (exclusive)
+    const randomNumber = Math.floor(Math.random() * 3);
+    return randomNumber;
+  }
+
+  const randomAnimation = pickRandomColor();
+
   const router = useRouter();
 
   const { loading, setLoading } = useLoadContext();
@@ -48,7 +81,10 @@ const EntryCard = ({ entry }: { entry: any }) => {
   };
 
   return (
-    <div className="divide-y divide-gray-200 overflow-hidden rounded-lg bg-white shadow">
+    <div
+      className={` overflow-hidden ${animation[randomAnimation]} rounded-lg shadow-2xl hover:cursor-pointer hover:scale-105 `}
+      style={{ backgroundColor: colors[randomColor] }}
+    >
       {}
       <div className="px-4 py-5 sm:px-6">{date}</div>
       <div className="px-4 py-5 sm:p-6">{entry.analysis?.summary}</div>

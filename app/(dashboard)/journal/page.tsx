@@ -41,7 +41,7 @@ const JournalPage = async () => {
   // console.log(response.data[0].url, "dalle");
 
   return (
-    <div className="p-10 bg-zinc-400/10 h-full">
+    <div className="p-10 bg-zinc-400/10 backgroundPattern h-full bg-[conic-gradient(at_bottom_right,_var(--tw-gradient-stops))] from-red-200 via-violet-200 to-orange-100 ">
       {/* <img src={image} alt="iamge" /> */}
       {/* <Loading /> */}
       {/* <Image /> */}
