@@ -9,9 +9,9 @@ const DashboardLayout = ({ children }: { children: any }) => {
   ];
 
   return (
-    <div className="h-screen w-screen relative ">
+    <div className="h-screen w-screen relative  bg-white ">
       <Loading />
-      <aside className="absolute w-[200px] top-0 left-0 h-full border-r border-black/10  ">
+      <aside className="absolute w-[200px] h-full top-0 left-0   ">
         <div className="px-4 my-4">
           <span className="text-3xl">MOOD</span>
         </div>
@@ -25,8 +25,8 @@ const DashboardLayout = ({ children }: { children: any }) => {
           </ul>
         </div>
       </aside>
-      <div className="ml-[200px] h-full ">
-        <header className="h-[60px] border-b border-black/10  ">
+      <div className="ml-[200px] h-full  ">
+        <header className="h-[60px] border-b border-orange-400 ">
           <div className="h-full w-full px-6 flex items-center justify-end ">
             <UserButton />
           </div>

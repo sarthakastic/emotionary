@@ -7,6 +7,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { openai } from "@/utils/openai";
+import { Trash2 } from "lucide-react";
 
 const EntryCard = ({ entry }: { entry: any }) => {
   const date = new Date(entry?.analysis?.createdAt).toDateString();
@@ -27,6 +28,8 @@ const EntryCard = ({ entry }: { entry: any }) => {
     "animate-fade-in-up",
     "animate-fade-in-right",
   ];
+
+  const width = ["w-64", "w-52", "w-80", "w-72"];
 
   function pickRandomColor(): number {
     // Generate a random number between 0 (inclusive) and 5 (exclusive)
@@ -82,24 +85,29 @@ const EntryCard = ({ entry }: { entry: any }) => {
 
   return (
     <div
-      className={` overflow-hidden ${animation[randomAnimation]} rounded-lg shadow-2xl hover:cursor-pointer hover:scale-105 `}
-      style={{ backgroundColor: colors[randomColor] }}
+      className={` overflow-hidden ${animation[randomAnimation]} w-96 bg-orange-50 max-w-sm rounded-lg shadow-2xl hover:cursor-pointer hover:scale-105  `}
+      // style={{ backgroundColor: colors[randomColor] }}
     >
       {}
       <div className="px-4 py-5 sm:px-6">{date}</div>
       <div className="px-4 py-5 sm:p-6">{entry.analysis?.summary}</div>
       <div className="px-4 py-4 sm:px-6">{entry.analysis?.mood}</div>
 
-      <div className="flex">
+      <div className="flex items-center justify-between p-2 ">
         <Link key={entry.id} href={`/journal/${entry.analysis?.entryId}`}>
-          <div className="px-4 py-4 sm:px-6">Edit or View </div>
+          <div
+            onClick={() => setLoading(true)}
+            className="px-2 border-black rounded-lg border sm:px-6 hover:outline-double "
+          >
+            Edit or View{" "}
+          </div>
         </Link>
         <button
           className="px-4 py-4 sm:px-6"
           type="button"
           onClick={() => deleteJournl(entry)}
         >
-          delete{" "}
+          <Trash2 color="red" />
         </button>
       </div>
     </div>

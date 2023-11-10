@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  background-color: white;
+}
+
 .backgroundPattern1 {
   background: radial-gradient(rgb(7, 95, 50) 3px, transparent 4px),
     radial-gradient(rgb(14, 142, 73) 3px, transparent 4px),

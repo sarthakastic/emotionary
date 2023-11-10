@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useAutosave } from "react-autosave";
 import Image from "./Image";
 import AiImage from "./Image";
+import { useLoadContext } from "@/utils/context";
 // import { openai } from "../utils/openai";
 
 const Editor = ({ entry }: { entry: any }) => {
@@ -12,6 +13,8 @@ const Editor = ({ entry }: { entry: any }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [imageUrl, setImageUrl] = useState<string | undefined>("");
   const [analysis, setAnalysis] = useState(entry?.analysis);
+
+  const { setLoading } = useLoadContext();
 
   const imageGeneration = async () => {
     console.log("first");
@@ -56,18 +59,18 @@ const Editor = ({ entry }: { entry: any }) => {
   });
 
   useEffect(() => {
-    console.log("second");
+    setLoading(false);
     imageGeneration();
   }, []);
 
   return (
-    <div className="w-full h-full grid grid-cols-3  ">
+    <div className="w-full h-full grid grid-cols-3 border-l border-orange-400 ">
       <div className="col-span-2">
         {isLoading && <div>Saving</div>}
         {/* <Image /> */}
 
         <textarea
-          className="w-full h-full p-8 text-xl outline-none "
+          className="w-full h-full p-8 text-xl outline-none border m-2 "
           value={value}
           onChange={(e) => setValue(e.target.value)}
         />

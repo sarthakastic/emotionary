@@ -24,8 +24,17 @@ const History = async () => {
   //   console.log(analyses);
 
   return (
-    <div className="w-full h-full ">
-      <div>History: {avg}</div>
+    <div className="w-full h-full font-bold text-orange-400 ">
+      <div>
+        Mood Throughout the Journalling:{" "}
+        {avg > 4 ? (
+          <span className="text-orange-500">Happy</span>
+        ) : avg < 0 ? (
+          <span className="text-orange-500">Sad</span>
+        ) : (
+          <span className="text-orange-500">Neutral</span>
+        )}
+      </div>
       <div className="w-full h-full ">
         <HistoryChart data={analyses} />
       </div>

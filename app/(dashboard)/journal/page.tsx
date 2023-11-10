@@ -27,7 +27,7 @@ const getEntries = async () => {
 };
 
 const JournalPage = async () => {
-  const entries = getEntries();
+  const entries = await getEntries();
 
   // const response = await openai.images.generate({
   //   model: "dall-e-3",
@@ -41,15 +41,15 @@ const JournalPage = async () => {
   // console.log(response.data[0].url, "dalle");
 
   return (
-    <div className="p-10 bg-zinc-400/10 backgroundPattern h-full bg-[conic-gradient(at_bottom_right,_var(--tw-gradient-stops))] from-red-200 via-violet-200 to-orange-100 ">
+    <div className="p-10 border-l border-orange-400   min-h-screen max-h-fit bg-white ">
       {/* <img src={image} alt="iamge" /> */}
       {/* <Loading /> */}
       {/* <Image /> */}
-      <h2 className="text-3xl mb-8 ">Journal</h2>
+      <h2 className="text-3xl mb-8 "> My Journals</h2>
       <div className="my-8">
         <Question />
       </div>
-      <div className="grid grid-cols-3 gap-4 ">
+      <div className="flex flex-wrap flex-grow items-center justify-evenly gap-4 ">
         <NewEntryCard />
         {(await entries).map((entry, id) => (
           // <Link key={entry.id} href={`/journal/${entry.id}`}>
