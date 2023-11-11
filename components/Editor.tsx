@@ -1,13 +1,32 @@
 "use client";
 
 import { updateEntry } from "@/utils/api";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAutosave } from "react-autosave";
+import Image from "./Image";
+import AiImage from "./Image";
+import { useLoadContext } from "@/utils/context";
+// import { openai } from "../utils/openai";
 
 const Editor = ({ entry }: { entry: any }) => {
   const [value, setValue] = useState(entry?.content);
   const [isLoading, setIsLoading] = useState(false);
+  const [imageUrl, setImageUrl] = useState<string | undefined>("");
   const [analysis, setAnalysis] = useState(entry?.analysis);
+
+  const { setLoading } = useLoadContext();
+
+  const imageGeneration = async () => {
+    console.log("first");
+    // const response = await openai.images.generate({
+    //   model: "dall-e-3",
+    //   prompt: "a pan cake",
+    //   n: 1,
+    //   size: "1024x1024",
+    // });
+
+    // setImageUrl(response?.data[0].url);
+  };
 
   const { mood, summary, color, subject, negative } = analysis;
   const analysisData = [
@@ -39,12 +58,19 @@ const Editor = ({ entry }: { entry: any }) => {
     },
   });
 
+  useEffect(() => {
+    setLoading(false);
+    imageGeneration();
+  }, []);
+
   return (
-    <div className="w-full h-full grid grid-cols-3  ">
+    <div className="w-full h-full text-2xl grid grid-cols-3 border-l border-orange-400 ">
       <div className="col-span-2">
         {isLoading && <div>Saving</div>}
+        {/* <Image /> */}
+
         <textarea
-          className="w-full h-full p-8 text-xl outline-none "
+          className="w-full h-full p-8 text-2xl outline-none border m-2 "
           value={value}
           onChange={(e) => setValue(e.target.value)}
         />
@@ -67,6 +93,7 @@ const Editor = ({ entry }: { entry: any }) => {
             ))}
           </ul>
         </div>
+        {/* <AiImage mood={entry?.analysis?.summary} /> */}
       </div>
     </div>
   );

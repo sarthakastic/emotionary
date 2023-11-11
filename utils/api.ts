@@ -56,6 +56,6 @@ export const deleteJournal = async (body: any) => {
   console.log(res, "res");
   if (res.ok) {
     const data = await res.json();
-    return data.status;
+    return res;
   }
 };
