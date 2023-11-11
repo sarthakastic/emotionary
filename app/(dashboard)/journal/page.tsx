@@ -8,6 +8,12 @@ import { prisma } from "@/utils/db";
 import Link from "next/link";
 import { openai } from "../../../utils/openai";
 import Image from "@/components/Image";
+import { Whisper } from "next/font/google";
+
+const whisper = Whisper({
+  subsets: ["latin"],
+  weight: "400",
+});
 
 const getEntries = async () => {
   const user = await getUserByClerkID();
@@ -45,7 +51,7 @@ const JournalPage = async () => {
       {/* <img src={image} alt="iamge" /> */}
       {/* <Loading /> */}
       {/* <Image /> */}
-      <h2 className="text-3xl mb-8 "> My Journals</h2>
+      <h2 className={`text-3xl mb-8 ${whisper.className} `}> My Journals</h2>
       <div className="my-8">
         <Question />
       </div>

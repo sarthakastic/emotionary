@@ -1,6 +1,12 @@
 import Loading from "@/components/Loading";
 import { UserButton } from "@clerk/nextjs";
 import Link from "next/link";
+import { Whisper } from "next/font/google";
+
+const whisper = Whisper({
+  subsets: ["latin"],
+  weight: "400",
+});
 
 const DashboardLayout = ({ children }: { children: any }) => {
   const links = [
@@ -13,7 +19,7 @@ const DashboardLayout = ({ children }: { children: any }) => {
       <Loading />
       <aside className="absolute w-[200px] h-full top-0 left-0   ">
         <div className="px-4 my-4">
-          <span className="text-3xl">MOOD</span>
+          <span className={`text-3xl ${whisper.className} `}>MOOD</span>
         </div>
         <div>
           <ul className="px-4">

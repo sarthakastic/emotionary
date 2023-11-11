@@ -85,7 +85,7 @@ const EntryCard = ({ entry }: { entry: any }) => {
 
   return (
     <div
-      className={` overflow-hidden ${animation[randomAnimation]} w-96 bg-orange-50 max-w-sm rounded-lg shadow-2xl hover:cursor-pointer hover:scale-105  `}
+      className={` overflow-hidden ${animation[randomAnimation]} text-2xl divide-y divide-orange-200 w-96 bg-orange-50 max-w-sm rounded-lg shadow-2xl  hover:scale-105  `}
       // style={{ backgroundColor: colors[randomColor] }}
     >
       {}

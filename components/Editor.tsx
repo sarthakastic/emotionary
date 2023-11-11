@@ -64,13 +64,13 @@ const Editor = ({ entry }: { entry: any }) => {
   }, []);
 
   return (
-    <div className="w-full h-full grid grid-cols-3 border-l border-orange-400 ">
+    <div className="w-full h-full text-2xl grid grid-cols-3 border-l border-orange-400 ">
       <div className="col-span-2">
         {isLoading && <div>Saving</div>}
         {/* <Image /> */}
 
         <textarea
-          className="w-full h-full p-8 text-xl outline-none border m-2 "
+          className="w-full h-full p-8 text-2xl outline-none border m-2 "
           value={value}
           onChange={(e) => setValue(e.target.value)}
         />

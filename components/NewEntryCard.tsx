@@ -25,7 +25,7 @@ const NewEntryCard = () => {
       <div className="px-4 py-5 sm:p-6 flex items-center justify-start ">
         <PenSquareIcon /> <span className="text-3xl pl-5 ">Add New Entry</span>
       </div>
-      <p className="p-5">Write about your day!</p>
+      <p className="p-5 text-2xl ">Write about your day!</p>
     </div>
   );
 };
