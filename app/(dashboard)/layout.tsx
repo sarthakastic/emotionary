@@ -1,9 +1,11 @@
 import Loading from "@/components/Loading";
 import { UserButton } from "@clerk/nextjs";
 import Link from "next/link";
-import { Whisper } from "next/font/google";
+import { Tapestry, Carattere } from "next/font/google";
 
-const whisper = Whisper({
+const carattere = Carattere({ subsets: ["latin"], weight: "400" });
+
+const whisper = Tapestry({
   subsets: ["latin"],
   weight: "400",
 });
@@ -15,11 +17,13 @@ const DashboardLayout = ({ children }: { children: any }) => {
   ];
 
   return (
-    <div className="h-screen w-screen relative  bg-white ">
+    <div
+      className={`h-screen w-screen relative  bg-white ${carattere.className} `}
+    >
       <Loading />
       <aside className="absolute w-[200px] h-full top-0 left-0   ">
-        <div className="px-4 my-4">
-          <span className={`text-3xl ${whisper.className} `}>MOOD</span>
+        <div className="px-4 my-4 bg-orange-200 w-28 rounded-r-full ">
+          <span className={`text-3xl ${whisper.className}   `}>Emotionary</span>
         </div>
         <div>
           <ul className="px-4">
