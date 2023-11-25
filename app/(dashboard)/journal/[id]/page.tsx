@@ -22,10 +22,10 @@ const getEntry = async (id: string) => {
 
 const EntryPage = async ({ params }: { params: any }) => {
   const entry = await getEntry(params.id);
-  console.log(entry, "entry props");
+
   return (
     <div className="h-full w-full  ">
-      <AiImage mood={entry?.analysis?.summary} />
+      {/* <AiImage mood={entry?.analysis?.summary} /> */}
       <Editor entry={entry} />
     </div>
   );
