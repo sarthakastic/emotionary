@@ -21,7 +21,7 @@ const DashboardLayout = ({ children }: { children: any }) => {
       className={`h-screen w-screen relative  bg-white ${carattere.className} `}
     >
       <Loading />
-      <aside className="absolute w-[200px] h-full top-0 left-0   ">
+      {/* <aside className="absolute w-[200px] h-full top-0 left-0   ">
         <div className="px-4 my-4 bg-orange-200 w-28 rounded-r-full ">
           <span className={`text-3xl ${whisper.className}   `}>Emotionary</span>
         </div>
@@ -34,14 +34,33 @@ const DashboardLayout = ({ children }: { children: any }) => {
             ))}
           </ul>
         </div>
-      </aside>
-      <div className="ml-[200px] h-full  ">
-        <header className="h-[60px] border-b border-orange-400 ">
-          <div className="h-full w-full px-6 flex items-center justify-end ">
-            <UserButton />
+      </aside> */}
+      <div className=" h-full  ">
+        <div className="flex w-screen fixed top-0 bg-white justify-between items-center border-b border-orange-400  ">
+          <div className=" bg-orange-200 w-28 rounded-r-full ">
+            <span className={`text-xl md:text-3xl ${whisper.className}   `}>
+              Emotionary
+            </span>
           </div>
-        </header>
-        <div className="h-[calc(100vh-60px)]">{children}</div>
+          <div>
+            <ul className="px-4 flex gap-4 ">
+              {links.map((link) => (
+                <li
+                  key={link.name}
+                  className="text-xl my-4 hover:underline hover:text-orange-400 decoration-orange-400 hover:scale-150 hover:mx-4 "
+                >
+                  <Link href={link.href}>{link.name}</Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <header className="h-[60px] ">
+            <div className="h-full w-full px-6 flex items-center justify-end ">
+              <UserButton />
+            </div>
+          </header>
+        </div>
+        <div className="h-[calc(100vh-60px)] ">{children}</div>
       </div>
     </div>
   );

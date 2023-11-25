@@ -47,11 +47,11 @@ const JournalPage = async () => {
   // console.log(response.data[0].url, "dalle");
 
   return (
-    <div className="p-10 border-l border-orange-400   min-h-screen max-h-fit bg-white ">
+    <div className="p-10  border-l border-orange-400   min-h-screen max-h-fit bg-white ">
       {/* <img src={image} alt="iamge" /> */}
       {/* <Loading /> */}
       {/* <Image /> */}
-      <h2 className={`text-3xl mb-8 ${whisper.className} `}> My Journals</h2>
+      <h2 className={`text-3xl my-8 ${whisper.className} `}> My Journals</h2>
       <div className="my-8">
         <Question />
       </div>

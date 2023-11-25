@@ -7,9 +7,9 @@ const Loading = () => {
   console.log("loading");
   return (
     loading && (
-      <div className="absolute z-10">
+      <div className=" fixed z-10  ">
         <div className="w-screen h-screen  text-4xl text-orange-200 overflow-hidden  flex justify-center items-center bg-black/80  bg-opacity-100  absolute animate-">
-          m<span className="text-orange-400 animate-spin ">oo</span>d
+          Em<span className="text-orange-400 animate-spin ">o</span>tionary
         </div>
       </div>
     )

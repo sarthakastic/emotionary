@@ -16,19 +16,7 @@ const Editor = ({ entry }: { entry: any }) => {
 
   const { setLoading } = useLoadContext();
 
-  const imageGeneration = async () => {
-    console.log("first");
-    // const response = await openai.images.generate({
-    //   model: "dall-e-3",
-    //   prompt: "a pan cake",
-    //   n: 1,
-    //   size: "1024x1024",
-    // });
-
-    // setImageUrl(response?.data[0].url);
-  };
-
-  const { mood, summary, color, subject, negative } = analysis;
+  const { mood, summary, color, subject, negative } = entry?.analysis;
   const analysisData = [
     {
       name: "Subject",
@@ -53,31 +41,30 @@ const Editor = ({ entry }: { entry: any }) => {
     onSave: async (_value) => {
       setIsLoading(true);
       const data = await updateEntry(entry.id, _value);
-      setAnalysis(data.analysis);
+      setAnalysis(data?.analysis);
       setIsLoading(false);
     },
   });
 
   useEffect(() => {
     setLoading(false);
-    imageGeneration();
   }, []);
 
   return (
-    <div className="w-full h-full text-2xl grid grid-cols-3 border-l border-orange-400 ">
+    <div className="w-full h-full flex flex-col lg:flex-row  text-2xl   ">
       <div className="col-span-2">
         {isLoading && <div>Saving</div>}
         {/* <Image /> */}
 
         <textarea
-          className="w-full h-full p-8 text-2xl outline-none border m-2 "
+          className="w-[97vw]  lg:w-[60vw] h-[95%] min-h-[200px] p-8 text-2xl outline-none border border-orange-400 lg:m-20 m-2 mt-20 "
           value={value}
           onChange={(e) => setValue(e.target.value)}
         />
       </div>
 
-      <div className="border-l border-black/10 ">
-        <div className=" px-6 py-10 " style={{ backgroundColor: color }}>
+      <div className="border-l border-black/10 mr-5">
+        <div className=" px-6 py-10 mt-10 " style={{ backgroundColor: color }}>
           <h2 className="text-2xl">Analysis</h2>
         </div>
         <div>
